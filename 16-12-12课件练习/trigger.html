@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	<style>
+		div {
+			width:100px;
+			height:100px;
+			background: red;
+		}
+	</style>
+	</head>
+	<body>
+		<div>1</div>
+		<div>2</div>
+		<script src="JQ/jquery-3.1.1.min.js"></script>
+		<script>
+			$("div").eq(0).on("click.fn1",function(){
+				console.log(this);
+			})
+			$("div").eq(0).on("click.fn2",function(){
+				alert(2222);
+			})
+			$("div").eq(1).on("mouseout",function(){
+				$("div").eq(0).trigger("click.fn1");
+			})
+		</script>
+	</body>
+</html>

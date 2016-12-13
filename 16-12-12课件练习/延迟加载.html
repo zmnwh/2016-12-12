@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	<style>
+		img {
+			opacity: 0;
+			transition:1s;
+			width:800px;
+			height:800px;
+		}
+	</style>
+	</head>
+	
+	<body>
+		
+		<script src="JQ/jquery-3.1.1.min.js"></script>
+		<script>
+			/*offset().left/offset().top
+			当前元素的绝对位置(直接到可视区的距离),这个值不会随着滚动条的改变而改变*/
+			var arr=[
+				"img/b1.jpg",
+				"img/b2.jpg",
+				"img/b3.jpg",
+				"img/b4.jpg",
+				"img/b5.jpg",
+				"img/b6.jpg",
+				"img/b7.jpg",
+				"img/b8.jpg"
+			]
+			for (var i=0;i<arr.length;i++){
+				var $img=$("<img _src="+arr[i]+"/>");//为什么要存一个_src?这个_src只是一个自定义属性，
+				//作用是不让图片在一开始就先显示出来；
+				$("body").append($img);
+			}	
+			var $imgs=$("img");
+			$(window).scroll(function(){
+				$imgs.each(function(i,e){
+					if($(e).offset().top<$(window).innerHeight()+$(window).scrollTop()){
+						console.log($(e).offset().top)
+						$(e).attr("src",$(e).attr("_src"));
+						$(e).removeAttr("_src");
+						$(e).css("opacity","1");
+					}
+				})
+			})
+			
+		</script>
+	</body>
+</html>
